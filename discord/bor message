@@ -1,0 +1,15 @@
+import discord
+from discord.ext import tasks, commands
+
+class MyCog(commands.Cog):
+    def __init__(self):
+        self.printer.start()
+
+    def cog_unload(self):
+        self.printer.cancel()
+
+    @tasks.loop(hours=24)
+    async def printer(self):
+        for guild in _bot.guilds:
+            channel = discord.utils.get(guild.text_channels, id='1039467695860629574')
+            await channel.send('https://media.discordapp.net/attachments/650640505100566547/1054251792105476177/image0.gif')
